@@ -1,6 +1,8 @@
 package com.example.lifecycleforactivity
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
@@ -26,10 +28,33 @@ class SecondActivity : AppCompatActivity() {
 //        Result of launching a coroutine and making dialog cover the entire screen: No lifecycle method was called
         val showDialogButton = findViewById<Button>(R.id.showDialog)
         showDialogButton.setOnClickListener {
-            showDialog()
+//            showDialog()
+            showAnotherDialog()
         }
 
     }
+
+    private fun showAnotherDialog(){
+//        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+//        builder.setTitle("Dialog Title")
+//            .setMessage("This is a sample dialog")
+//            .setPositiveButton("OK", object : DialogInterface.OnClickListener{
+//                override fun onClick(p0: DialogInterface?, p1: Int) {
+//                    Toast.makeText(applicationContext, "Hello", Toast.LENGTH_SHORT).show()
+//                    p0?.dismiss()
+//                }
+//            })
+//
+//        val dialog = builder.create()
+//        dialog.show();
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_custom_progress, null)
+
+        val dialog = Dialog(this)
+        dialog.setContentView(dialogView);
+        dialog.show();
+    }
+
 
     private fun showDialog() {
 //        mProgressDialog = Dialog(this)
