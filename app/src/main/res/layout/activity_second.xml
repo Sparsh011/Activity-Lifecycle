@@ -7,6 +7,15 @@
     tools:context=".SecondActivity">
 
     <Button
+        android:id="@+id/showToastBtn"
+        android:text="Show Toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
         android:id="@+id/showDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

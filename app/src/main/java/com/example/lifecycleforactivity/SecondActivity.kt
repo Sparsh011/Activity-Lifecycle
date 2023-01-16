@@ -32,6 +32,11 @@ class SecondActivity : AppCompatActivity() {
             showAnotherDialog()
         }
 
+        val showToast = findViewById<Button>(R.id.showToastBtn)
+        showToast.setOnClickListener{
+            Toast.makeText(applicationContext, "Hello Toast", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun showAnotherDialog(){
@@ -48,11 +53,21 @@ class SecondActivity : AppCompatActivity() {
 //        val dialog = builder.create()
 //        dialog.show();
 
+        Log.i(TAG, "showAnotherDialog: ${lifecycle.currentState}")
+
         val dialogView = layoutInflater.inflate(R.layout.dialog_custom_progress, null)
 
         val dialog = Dialog(this)
-        dialog.setContentView(dialogView);
-        dialog.show();
+        dialog.setContentView(dialogView)
+        dialog.show()
+
+        dialogView.findViewById<Button>(R.id.btnSendRequest).setOnClickListener{
+            dialog.dismiss()
+        }
+
+        if (this@SecondActivity.isFinishing || this@SecondActivity.isDestroyed){
+            Toast.makeText(applicationContext, "Destroyed/Finished", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
