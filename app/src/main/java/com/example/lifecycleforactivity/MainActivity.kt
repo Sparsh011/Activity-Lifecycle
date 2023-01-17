@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "FirstActivityTag"
@@ -13,6 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i(TAG, "onCreate: Called")
+
+
+//        Q. Why shouldn't we write logical part related to views in onStart?
+//        Ans. All the logic part should be written in onCreate and not in onStart because, let's say we want to show a toast or do something whenever the activity is launched for the first time and if we write that code in onStart, then if we navigate to any other activity and come back to the original activity, then that toast will be shown again and we don't want this because activity IS NOT recreated at that moment.
+
+//        Follow up ques. But if the device is rotated, then onCreate will be called again, then the toast will be shown again, how to overcome this problem?
+//        Ans. By storing whether the toast was shown or not in bundle or a global variable. Bundle's data lives as long as the application lives.
+
+        Toast.makeText(this, "Hello From onCreate!", Toast.LENGTH_SHORT).show()
 
         val goToSecond = findViewById<Button>(R.id.goToSecondActivity)
 
@@ -25,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.i(TAG, "onStart: called")
+        Toast.makeText(this, "Hello From onStart!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
