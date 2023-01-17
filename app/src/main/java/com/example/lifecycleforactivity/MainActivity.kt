@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "FirstActivityTag"
@@ -21,6 +23,13 @@ class MainActivity : AppCompatActivity() {
 
 //        Follow up ques. But if the device is rotated, then onCreate will be called again, then the toast will be shown again, how to overcome this problem?
 //        Ans. By storing whether the toast was shown or not in bundle or a global variable. Bundle's data lives as long as the application lives.
+
+
+//        Adding the code written below in any of the lifecycle methods will prevent calling the next lifecycle methods for 5 seconds
+//           runBlocking {
+//            delay(5000)
+//            Log.i(TAG, "Inside coroutine runblocking...")
+//        }
 
         Toast.makeText(this, "Hello From onCreate!", Toast.LENGTH_SHORT).show()
 
